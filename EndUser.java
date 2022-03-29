@@ -1,7 +1,7 @@
 // CSE 360
 // Team Project - User Class
 // Brandon Nosaka, Stephen Lubitz, Zion Esemonu, Jeffrey Lafleur
-// This program creates the User Class for the team project. The User has their own profile and can login, logout, and register.
+// This program creates the EndUser Class for the team project. The EndUser is the customer and allows the customer to update their cart and address.
 
 public class EndUser {
   
