@@ -4,6 +4,8 @@
 // This program creates the Admin Class for the team project. The Admin is allowed to distribute coupons to customers 
 // and update the menu.
 
+import java.util.Scanner;
+
 public class Admin extends User{
 	
 	// default constructor
@@ -34,13 +36,5 @@ public class Admin extends User{
 		
 		// give the coupon to the customer
 		customer.setCoupon(coupon);
-	}
-	
-	
-	// updateMenu method
-	public void updateMenu() {
-		
-		// ************************************************************************
-		// finishing later
 	}
 }
