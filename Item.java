@@ -12,12 +12,6 @@ public class Item{
         this.description = description;
         this.id = id;
     }
-    
-    public Item(Item item){
-        this.name = name;
-        this.price = price;
-        this.type = type;
-    }
       
     public String getInfo(){ //used in the menu's search method to find item based on key word
         return name + " " + price + " " + type;
