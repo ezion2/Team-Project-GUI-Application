@@ -17,7 +17,8 @@ public class Application
 	}	
 	
 	public boolean verifyLogin(User user, String userName, String password) {
-		if (userName.equals(user.userName)) {
+		return userName.equals(user.userName) && password.equals(user.password);
+		/*if (userName.equals(user.userName)) {
 			if(password.equals(user.password)) {
 				return true;
 			}
@@ -28,7 +29,7 @@ public class Application
 		}
 		else {
 			return false;
-		}
+		}*/
 	}
 }
 		
