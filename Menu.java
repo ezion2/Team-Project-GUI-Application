@@ -3,22 +3,25 @@ import java.util.ArrayList;
 
 public class Menu{
     private ArrayList<Item> menuItems;
-    private ArrayList<Item> results; //search results from searchMenu method
+    // private Map<Integer, Item> menuItems;
+    //private ArrayList<Item> results; //search results from searchMenu method
     
     public Menu(){
-        menuItems = new ArrayList<Item>();
-        results = new ArrayList<Item>();
+        menuItems = new ArrayList<Item>(); 
+        // menuitems = new HashMap<Integer, Item>();
+
     }
     
-    public Menu(ArrayList<Item> existingMenu){
+   /* public Menu(ArrayList<Item> existingMenu){
         for(Item item : existingMenu){
             menuItems.add(item);
         }
         results = new ArrayList<Item>();
-    }
+    }*/
     
     public void addItem(Item item){
-        menuItems.add(item);
+        menuItems.add(item); 
+        //menuItems.put(item.id, item);
     }
     
     public void removeItem(String name){
@@ -42,7 +45,7 @@ public class Menu{
     }
     
     public ArrayList<Item> searchMenu(String str){
-        results.clear();
+        results = new ArrayList<Item>();
         for(Item item : menuItems){
             if(item.getInfo().contains(str)){
                 results.add(item);
