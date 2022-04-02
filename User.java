@@ -3,7 +3,7 @@
 // Brandon Nosaka, Stephen Lubitz, Zion Esemonu, Jeffrey Lafleur
 // This program creates the User Class for the team project. The User has their own profile and can login, logout, and register.
 
-public class User {
+public abstract class User {
 	
 	
 	// declare properties needed
@@ -12,7 +12,7 @@ public class User {
 	protected String password;
 	
 	
-	// default constructor
+	// default constructor delete this
 	User(){
 		
 		// initialize an empty user
