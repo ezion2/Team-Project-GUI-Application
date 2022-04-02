@@ -2,11 +2,15 @@ public class Item{
     private String name;        //name of item
     private double price;       //price of item
     private String type;        //appetizer, main course, or dessert
+    private String description; //description of item if we choose to display it. 
+    private int id;             //Number for each item.
     
-    public Item(String name, double price, String type,  String description, int cookTime){
+    public Item(String name, double price, String type,  String description, int id){
         this.name = name;
         this.price = price;
         this.type = type;
+        this.description = description;
+        this.id = id;
     }
     
     public Item(Item item){
@@ -29,5 +33,11 @@ public class Item{
     
     public String getType(){
         return type;
+    }
+    public String getId(){
+        return id;
+    }
+     public String getDescription(){
+        return description;
     }
 }
