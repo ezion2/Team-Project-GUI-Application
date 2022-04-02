@@ -18,16 +18,16 @@ public class Admin extends User{
 	
 	// overloaded constructor
 	Admin(String userName, String email, String password){
-		
+		super(userName, email, password)
 		// initialize an admin
-		this.userName = userName;
-		this.email = email;
-		this.password = password;
+		//this.userName = userName;
+		//this.email = email;
+		//this.password = password;
 	}
 	
 	
 	// distributeCoupon method
-	public void distributeCoupon(EndUser customer) {
+	public void distributeCoupon(EndUser customer) { //This will need to be changed from enduser to user
 		
 		// create variables needed
 		boolean coupon = true;
