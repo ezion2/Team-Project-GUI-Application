@@ -14,19 +14,20 @@ import java.util.stream.Collectors;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
 
 public class MainController implements Initializable {
 	
 	// Variables for GUI elements located in the GUI2.fxml file
-	@FXML private ListView listFull;
-	@FXML private ListView listBreakfast;
-	@FXML private ListView listLunch;
-	@FXML private ListView listDinner;
+	@FXML private ListView<String> listFull;
+	@FXML private ListView<String> listBreakfast;
+	@FXML private ListView<String> listLunch;
+	@FXML private ListView<String> listDinner;
 	
     @FXML private TextField searchBar;
     @FXML private ListView<String> listSearchDisplay;
 	
-	@FXML private ListView listShopCart;
+	@FXML private ListView<String> listShopCart;
 	
 	// Global Counter to increment the ID whenever we generate a new Item
 	private int idCounter = 0;
@@ -34,11 +35,186 @@ public class MainController implements Initializable {
 	// Global Array for handling searching
     private ArrayList<String> words = new ArrayList<>();
     
-
-	@FXML private void addToCart(MouseEvent event)
+    // Global Array for handling a shopping cart
+    //private ArrayList<Item> cart = new ArrayList<>();
+    
+	// Global Menu for handling a shopping cart
+    Menu theMenu = new Menu();
+    ShoppingCart theCart = new ShoppingCart();
+    
+	@FXML private void handleFullToCart(ActionEvent event)
 	{
-		System.out.println("Adding to cart");
+		// Get currently selected object in this model
+		if(listFull.getSelectionModel().getSelectedItem() != null)
+		{
+			String theString = listFull.getSelectionModel().getSelectedItem().substring(listFull.getSelectionModel().getSelectedItem().length() - 1);
+			int theInt = Integer.parseInt(theString);
+			boolean dupe = false;
+			
+			if(listShopCart.getItems().size() == 0)
+			{
+				listShopCart.getItems().add(listFull.getSelectionModel().getSelectedItem());
+				theCart.addToCart(theMenu.getMenu().get(theInt));
+			}
+			else
+			{
+				// Check if we have a duplicate
+				for(int j = 0; j < listShopCart.getItems().size(); j++)
+                {
+					// If the ID of what we have selected is in list view
+					if(Integer.parseInt(listShopCart.getItems().get(j).substring(listShopCart.getItems().get(j).length() - 1)) == theInt)
+					{
+						// Increment the quantity at this index and then exit the loop
+						theCart.searchCart(listFull.getSelectionModel().getSelectedItem().split(",")[0]).incrementQuantity(1);
+						
+						// Remove the old item
+						listShopCart.getItems().remove(j);
+						
+						// Replace with new value
+						listShopCart.getItems().add(j, theCart.searchCart(listFull.getSelectionModel().getSelectedItem().split(",")[0]).getInfo());
+						dupe = true;
+						break;
+					}
+					// If the ID of what we have selected is NOT in list view}
+                }
+				// If the ID of what we have selected is NOT in list view
+				if(dupe == false)
+				{
+					// We add it to the end and exit loop
+					listShopCart.getItems().add(listFull.getSelectionModel().getSelectedItem());
+					theCart.addToCart(theMenu.getMenu().get(theInt));
+				}
+			}
+			
+		}
 	}
+	
+	@FXML private void handleBreakFastToCart(ActionEvent event)
+	{
+		String theString = listBreakfast.getSelectionModel().getSelectedItem().substring(listBreakfast.getSelectionModel().getSelectedItem().length() - 1);
+		int theInt = Integer.parseInt(theString);
+		boolean dupe = false;
+		
+		if(listShopCart.getItems().size() == 0)
+		{
+			listShopCart.getItems().add(listBreakfast.getSelectionModel().getSelectedItem());
+			theCart.addToCart(theMenu.getMenu().get(theInt));
+		}
+		else
+		{
+			// Check if we have a duplicate
+			for(int j = 0; j < listShopCart.getItems().size(); j++)
+            {
+				// If the ID of what we have selected is in list view
+				if(Integer.parseInt(listShopCart.getItems().get(j).substring(listShopCart.getItems().get(j).length() - 1)) == theInt)
+				{
+					// Increment the quantity at this index and then exit the loop
+					theCart.searchCart(listBreakfast.getSelectionModel().getSelectedItem().split(",")[0]).incrementQuantity(1);
+					
+					// Remove the old item
+					listShopCart.getItems().remove(j);
+					
+					// Replace with new value
+					listShopCart.getItems().add(j, theCart.searchCart(listBreakfast.getSelectionModel().getSelectedItem().split(",")[0]).getInfo());
+					dupe = true;
+					break;
+				}
+				// If the ID of what we have selected is NOT in list view}
+            }
+			// If the ID of what we have selected is NOT in list view
+			if(dupe == false)
+			{
+				// We add it to the end and exit loop
+				listShopCart.getItems().add(listBreakfast.getSelectionModel().getSelectedItem());
+				theCart.addToCart(theMenu.getMenu().get(theInt));
+			}
+		}
+	}
+	
+	@FXML private void handleLunchToCart(ActionEvent event)
+	{
+		String theString = listLunch.getSelectionModel().getSelectedItem().substring(listLunch.getSelectionModel().getSelectedItem().length() - 1);
+		int theInt = Integer.parseInt(theString);
+		boolean dupe = false;
+		
+		if(listShopCart.getItems().size() == 0)
+		{
+			listShopCart.getItems().add(listLunch.getSelectionModel().getSelectedItem());
+			theCart.addToCart(theMenu.getMenu().get(theInt));
+		}
+		else
+		{
+			// Check if we have a duplicate
+			for(int j = 0; j < listShopCart.getItems().size(); j++)
+            {
+				// If the ID of what we have selected is in list view
+				if(Integer.parseInt(listShopCart.getItems().get(j).substring(listShopCart.getItems().get(j).length() - 1)) == theInt)
+				{
+					// Increment the quantity at this index and then exit the loop
+					theCart.searchCart(listLunch.getSelectionModel().getSelectedItem().split(",")[0]).incrementQuantity(1);
+					
+					// Remove the old item
+					listShopCart.getItems().remove(j);
+					
+					// Replace with new value
+					listShopCart.getItems().add(j, theCart.searchCart(listLunch.getSelectionModel().getSelectedItem().split(",")[0]).getInfo());
+					dupe = true;
+					break;
+				}
+				// If the ID of what we have selected is NOT in list view}
+            }
+			// If the ID of what we have selected is NOT in list view
+			if(dupe == false)
+			{
+				// We add it to the end and exit loop
+				listShopCart.getItems().add(listLunch.getSelectionModel().getSelectedItem());
+				theCart.addToCart(theMenu.getMenu().get(theInt));
+			}
+		}
+	}
+	
+	@FXML private void handleDinnerToCart(ActionEvent event)
+	{
+		String theString = listDinner.getSelectionModel().getSelectedItem().substring(listDinner.getSelectionModel().getSelectedItem().length() - 1);
+		int theInt = Integer.parseInt(theString);
+		boolean dupe = false;
+		
+		if(listShopCart.getItems().size() == 0)
+		{
+			listShopCart.getItems().add(listDinner.getSelectionModel().getSelectedItem());
+			theCart.addToCart(theMenu.getMenu().get(theInt));
+		}
+		else
+		{
+			// Check if we have a duplicate
+			for(int j = 0; j < listShopCart.getItems().size(); j++)
+            {
+				// If the ID of what we have selected is in list view
+				if(Integer.parseInt(listShopCart.getItems().get(j).substring(listShopCart.getItems().get(j).length() - 1)) == theInt)
+				{
+					// Increment the quantity at this index and then exit the loop
+					theCart.searchCart(listDinner.getSelectionModel().getSelectedItem().split(",")[0]).incrementQuantity(1);
+					
+					// Remove the old item
+					listShopCart.getItems().remove(j);
+					
+					// Replace with new value
+					listShopCart.getItems().add(j, theCart.searchCart(listDinner.getSelectionModel().getSelectedItem().split(",")[0]).getInfo());
+					dupe = true;
+					break;
+				}
+				// If the ID of what we have selected is NOT in list view}
+            }
+			// If the ID of what we have selected is NOT in list view
+			if(dupe == false)
+			{
+				// We add it to the end and exit loop
+				listShopCart.getItems().add(listDinner.getSelectionModel().getSelectedItem());
+				theCart.addToCart(theMenu.getMenu().get(theInt));
+			}
+		}
+	}
+	
 	
 	
 	
@@ -106,7 +282,6 @@ public class MainController implements Initializable {
 		System.out.println("Main Controller!");
 		
 		// Creating menu object
-		Menu theMenu = new Menu();
 		
 		// Generating Random items to add to the menu object
 		Item chicken = generateItem("chicken", 15.50, "Breakfast", "A good source of protein", theMenu);

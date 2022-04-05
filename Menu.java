@@ -18,7 +18,8 @@ public class Menu
     	menuItems.add(item); 
     }
     
-    public void removeItem(String name){
+    public void removeItem(String name)
+    {
         for(Item item : menuItems)
         {
             if(name.equals(item.getName()))
@@ -31,28 +32,29 @@ public class Menu
         System.out.println("No item found");
     }
     
-    public Item getItem(String name){
-        for(Item item : menuItems){
-            if(name.equals(item.getName())){
+    public Item getItem(String name)
+    {
+        for(Item item : menuItems)
+        {
+            if(name.equals(item.getName()))
+            {
                 return item;
             }
         }
         return null;
     }
     
-    public ArrayList<Item> searchMenu(String str)
+    public Item searchMenu(String str)
     {
-    	ArrayList<Item> results = new ArrayList<Item>();
         for(Item item : menuItems)
         {
             if(item.getInfo().contains(str))
             {
-                results.add(item);
+                return item;
             }
         }
-        return results;
+        return null;
     }
-    
     public ArrayList<Item> getMenu(){
         return menuItems;
     }

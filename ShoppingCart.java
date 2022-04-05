@@ -1,62 +1,87 @@
+package application;
+
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-class ShoppingCart{
-  ArrayList<Item> item;
-  double totalAmount;
-  String coupon;
-  ShoppingCart(){
-    this.item = new ArrayList<Item>();
-    this.coupon = "";
+class ShoppingCart
+{
+  private ArrayList<Item> cartItem;
+  private double totalAmount;
+  private boolean coupon;
+  
+  public ShoppingCart()
+  {
+    this.cartItem = new ArrayList<Item>();
+    this.coupon = false;
     this.totalAmount = 0;
   }
   
-  public void addToCart(Item item){
-    this.item.add(item);
+  public void addToCart(Item item)
+  {
+    this.cartItem.add(item);
   }
   
-  	public void showCart() {
-		ListIterator<Item> iterator = item.listIterator();
+  	public void showCart() 
+  	{
+		ListIterator<Item> iterator = cartItem.listIterator();
 		while(iterator.hasNext()) {
 			Item item1 = iterator.next();
 			System.out.println(item1);
 		}
 	}
   
-  	public void removeFromCart(Item i) {
-		ListIterator<Item> iterator1 = item.listIterator();
-		while(iterator1.hasNext()) {
-			Item item2 = iterator1.next();
-			if (item2.getProductName().equals(i.getProductName())) {
-				this.item.remove(i);
-				break;
-			}
-		}
-	}
-  	public double getTotalAmount() {
-		ListIterator<Item> iterator2 = item.listIterator();
+    public void removeFromCart(String name)
+    {
+        for(Item item : cartItem)
+        {
+            if(name.equals(item.getName()))
+            {
+                System.out.println(item.getName() + " has been removed from the menu.");
+                cartItem.remove(item);
+                break;
+            }
+        }
+        System.out.println("No item found");
+    }
+    
+    /*public Item searchCart(int id)
+    {
+        for(Item item : cartItem)
+        {
+            if(item.getId() == id)
+            {
+                return item;
+            }
+        }
+        return null;
+    }*/
+    
+    public Item searchCart(String str)
+    {
+        for(Item item : cartItem)
+        {
+            if(item.getInfo().contains(str))
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+  	
+  	public double getTotalAmount() 
+  	{
 		this.totalAmount = 0;
-		while(iterator2.hasNext()) {
-			Item item3 = iterator2.next();
-			this.totalAmount = this.totalAmount + (item3.getUnitPrice() * item3.getQuantity());
-		}
+        for(Item item : cartItem)
+        {
+        	this.totalAmount = this.totalAmount + item.getPrice();
+        }
 		return this.totalAmount;
 	}
-  	public void applyCoupon(String coupon) { //this method allows for a coupon to be applied, Ive added it to the class if we need it for later. 
-		this.coupon = coupon;
-		if (coupon.equals("PLACEHOLDER")) {
-			this.discount = this.getTotalAmount() * (0.1);
-			this.totalAmount = this.totalAmount - this.discount;
-		} else {
-			this.totalAmount = this.totalAmount;
-		}
+  	
+  	public void applyCoupon() 
+  	{ //this method allows for a coupon to be applied, Ive added it to the class if we need it for later. 
+		this.coupon = true;
 	}
-  	/*public double getPayableAmount() { //payable amount is used for tax and potential coupons, since we are ignoring tax this method will likely be ignored, added just in case
-		this.payableAmount = 0;
-		this.tax = this.totalAmount * (0.14);
-		this.payableAmount = this.totalAmount + this.tax;
-		return this.payableAmount;
-	}*/
 }
   
   
