@@ -125,12 +125,12 @@
                               <Font size="36.0" />
                            </font>
                         </Text>
-                        <Hyperlink layoutX="229.0" layoutY="554.0" prefHeight="60.0" prefWidth="167.0" style="-fx-background-color: #606060; -fx-text-fill: white;" text="Complete Order">
+                        <Hyperlink layoutX="402.0" layoutY="648.0" onAction="#handleCompleteOrder" prefHeight="60.0" prefWidth="167.0" style="-fx-background-color: #606060; -fx-text-fill: white;" text="Complete Order">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Hyperlink>
-                        <Hyperlink layoutX="439.0" layoutY="554.0" onAction="#handleCancelCart" prefHeight="60.0" prefWidth="167.0" style="-fx-text-fill: white; -fx-background-color: #606060;" text="Cancel Order">
+                        <Hyperlink layoutX="220.0" layoutY="554.0" onAction="#handleCancelCart" prefHeight="60.0" prefWidth="167.0" style="-fx-text-fill: white; -fx-background-color: #606060;" text="Cancel Order">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -146,21 +146,22 @@
                               <Font size="21.0" />
                            </font>
                         </Text>
-                        <ListView fx:id="listQueue" layoutX="879.0" layoutY="387.0" prefHeight="107.0" prefWidth="242.0" />
                         <Text layoutX="879.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Queue: " wrappingWidth="244.13671875">
                            <font>
                               <Font size="21.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="txtTimeToComplete" editable="false" layoutX="879.0" layoutY="494.0" prefHeight="40.0" prefWidth="242.0" />
-                        <TextField editable="false" layoutX="607.0" layoutY="247.0" prefHeight="109.0" prefWidth="245.0" />
-                        <Text layoutX="607.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total: " wrappingWidth="244.13671875">
-                           <font>
-                              <Font size="21.0" />
-                           </font>
-                        </Text>
+                        <TextField fx:id="txtTimeToComplete" editable="false" layoutX="880.0" layoutY="495.0" prefHeight="40.0" prefWidth="242.0" />
+                        <TextField fx:id="totalPrice" editable="false" layoutX="587.0" layoutY="554.0" prefHeight="60.0" prefWidth="179.0" />
                         <Button layoutX="924.0" layoutY="276.0" mnemonicParsing="false" onAction="#checkCoupon" text="Apply Coupon" />
                         <PasswordField fx:id="coupon" layoutX="895.0" layoutY="247.0" />
+                        <Hyperlink layoutX="402.0" layoutY="554.0" onAction="#handleTotalPrice" prefHeight="60.0" prefWidth="167.0" style="-fx-text-fill: white; -fx-background-color: #606060;" text="Show Total">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Hyperlink>
+                        <TextField fx:id="paymentInfo" editable="false" layoutX="214.0" layoutY="648.0" prefHeight="60.0" prefWidth="179.0" promptText="Payment Info" />
+                        <TextField fx:id="listQueue" layoutX="879.0" layoutY="385.0" />
                      </children>
                   </AnchorPane>
                </content>
