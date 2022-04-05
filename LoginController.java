@@ -27,8 +27,6 @@ public class LoginController implements Initializable{
 	String password = "123";
 	String[] users = new String[100];
 	String[] passwords = new String[100];
-	//users[0] = "user";
-	//password[0] = "123";
 	static String uname = "";
 	static String newName = "";
 	static String newPas = "";
@@ -47,7 +45,6 @@ public class LoginController implements Initializable{
 		@FXML
 		private javafx.scene.control.TextField rePass;
 	
-	private Tab adminTab = new Tab();
 	@Override	
 	public void initialize (URL arg0, ResourceBundle arg1) {
 		String user = LoginController.getVariable();
@@ -80,20 +77,8 @@ public class LoginController implements Initializable{
 						if(name.equals("admin")) {
 							admin=true;
 							LoginController.uname=name;
-							EventHandler<MouseEvent> addTab = new EventHandler<MouseEvent>() {
-
-								@Override
-								public void handle(MouseEvent event) {
-									adminTab.setText("Admin");
-									adminTab.setClosable(true);
-									adminTab.setId("admin");
-									
-								}
-								
-							}
-							
-							//((Node)event.getSource()).getScene().getWindow().hide();
-							//loadWindow("/application/Gui2.fxml");
+							((Node)event.getSource()).getScene().getWindow().hide();
+							loadWindow("/application/Gui2.fxml");
 							flag=true;
 							break;
 						}else {

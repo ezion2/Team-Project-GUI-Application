@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
-      <TabPane fx:id="mainTabPane" prefHeight="779.0" prefWidth="1138.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane fx:id="tabPane" prefHeight="779.0" prefWidth="1138.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Home">
             <content>
@@ -23,6 +23,7 @@
                               <Font size="66.0" />
                            </font>
                         </Text>
+                        <Button fx:id="Admin" layoutX="1021.0" layoutY="9.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="108.0" text="Admin" />
                      </children>
                   </AnchorPane>
             </content>

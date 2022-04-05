@@ -2,15 +2,22 @@ package application;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +35,15 @@ public class MainController implements Initializable {
     @FXML private ListView<String> listSearchDisplay;
 	
 	@FXML private ListView<String> listShopCart;
+	
+	@FXML
+	private Button Admin;
+    @FXML
+    private TabPane tabPane;
+    
+    // for admin tab
+    private Tab adminTab = new Tab();
+	private SingleSelectionModel<Tab> selectionModel;
 	
 	// Global Counter to increment the ID whenever we generate a new Item
 	private int idCounter = 0;
@@ -303,6 +319,28 @@ public class MainController implements Initializable {
 			
 		}
 		
+		// for admin tab
+		Admin.setOnMouseClicked(addTab);
+		selectionModel = tabPane.getSelectionModel();
+		
 	}
+	
+	// for admin tab
+		EventHandler<MouseEvent> addTab = new EventHandler<MouseEvent>() {
 
+			@Override
+			public void handle(MouseEvent event) {
+				adminTab.setText("Admin");
+				adminTab.setClosable(true);
+				adminTab.setId("admin");
+				try {
+					adminTab.setContent(FXMLLoader.load(getClass().getResource("/application/admin.fxml")));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				tabPane.getTabs().add(adminTab);
+				selectionModel.selectLast();	
+			}
+		};
 }
