@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -45,6 +47,7 @@ public class LoginController implements Initializable{
 		@FXML
 		private javafx.scene.control.TextField rePass;
 	
+	private Tab adminTab = new Tab();
 	@Override	
 	public void initialize (URL arg0, ResourceBundle arg1) {
 		String user = LoginController.getVariable();
@@ -74,18 +77,37 @@ public class LoginController implements Initializable{
 			}else{
 				for(int i=0;i<100;i++) {
 					if(name.equals(users[i]) && passw.equals(passwords[i])) {
-						
-						LoginController.uname=name;
-						((Node)event.getSource()).getScene().getWindow().hide();
-						loadWindow("/application/Gui2.fxml");
-						flag=true;
-						break;
-				}else{
-					flag=false;}
-				//Alert alert = new Alert(AlertType.ERROR);
-				//alert.setHeaderText(null);
-				//alert.setContentText("Invalid username or password. Try agian.");
-				//alert.showAndWait();
+						if(name.equals("admin")) {
+							admin=true;
+							LoginController.uname=name;
+							EventHandler<MouseEvent> addTab = new EventHandler<MouseEvent>() {
+
+								@Override
+								public void handle(MouseEvent event) {
+									adminTab.setText("Admin");
+									adminTab.setClosable(true);
+									adminTab.setId("admin");
+									
+								}
+								
+							}
+							
+							//((Node)event.getSource()).getScene().getWindow().hide();
+							//loadWindow("/application/Gui2.fxml");
+							flag=true;
+							break;
+						}else {
+							admin=false;
+							LoginController.uname=name;
+							((Node)event.getSource()).getScene().getWindow().hide();
+							loadWindow("/application/Gui2.fxml");
+							flag=true;
+							break;
+							}
+					}else{
+						flag=false;
+						}
+		
 				if(i==99) {
 					break;
 				}
@@ -101,6 +123,7 @@ public class LoginController implements Initializable{
 			
 			}
 		}
+		
 		private void loadWindow(String location) throws IOException {
 			Parent root = FXMLLoader.load(getClass().getResource("Gui2.fxml"));
 			Stage primaryStage = new Stage();
