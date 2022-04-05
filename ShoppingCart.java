@@ -82,6 +82,10 @@ class ShoppingCart
   	{ //this method allows for a coupon to be applied, Ive added it to the class if we need it for later. 
 		this.coupon = true;
 	}
+  	
+    public ArrayList<Item> getCartItem(){
+        return cartItem;
+    }
 }
   
   

@@ -51,12 +51,37 @@ public class MainController implements Initializable {
 	// Global Array for handling searching
     private ArrayList<String> words = new ArrayList<>();
     
-    // Global Array for handling a shopping cart
-    //private ArrayList<Item> cart = new ArrayList<>();
-    
 	// Global Menu for handling a shopping cart
     Menu theMenu = new Menu();
     ShoppingCart theCart = new ShoppingCart();
+    
+	@FXML private void handleRemoveCart(ActionEvent event)
+	{
+		// Checking to make sure the selection is not empty
+		if(listShopCart.getSelectionModel().getSelectedItem() != null)
+		{
+			// Reset the quantity of the selected item in the cart
+			theCart.searchCart(listShopCart.getSelectionModel().getSelectedItem().split(",")[0]).setQuantity(1);
+			
+			// Removing the selected item from the list view
+			listShopCart.getItems().remove(listShopCart.getSelectionModel().getSelectedIndex());
+		}
+	}
+	
+	@FXML private void handleCancelCart(ActionEvent event)
+	{
+		// If the shop cart is not empty
+		if(listShopCart.getItems().size() != 0)
+		{
+			// We loop through the shop cart
+			listShopCart.getItems().clear();
+			System.out.println("Cancel Cart");
+			for(int i = 0; i < theCart.getCartItem().size(); i++)
+	        {
+				theCart.getCartItem().get(i).setQuantity(1);
+			}
+	    }
+	}
     
 	@FXML private void handleFullToCart(ActionEvent event)
 	{
@@ -235,11 +260,6 @@ public class MainController implements Initializable {
 	
 	
 	
-	
-	
-	
-	
-	
 	// Event action to be called
     @FXML void search(ActionEvent event) 
     {
@@ -319,14 +339,17 @@ public class MainController implements Initializable {
 			
 		}
 		
+		
+		
 		// for admin tab
 		Admin.setOnMouseClicked(addTab);
 		selectionModel = tabPane.getSelectionModel();
 		
 	}
 	
-	// for admin tab
-		EventHandler<MouseEvent> addTab = new EventHandler<MouseEvent>() {
+		// for admin tab
+		EventHandler<MouseEvent> addTab = new EventHandler<MouseEvent>() 
+		{
 
 			@Override
 			public void handle(MouseEvent event) {
