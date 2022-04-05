@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="779.0" prefWidth="1138.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
    <children>
       <TabPane fx:id="mainTabPane" prefHeight="779.0" prefWidth="1138.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -16,13 +16,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="432.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" textAlignment="CENTER" wrappingWidth="220.13671875">
+                        <Text fx:id="SignIn" layoutX="432.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" textAlignment="CENTER" wrappingWidth="220.13671875">
                            <font>
                               <Font size="72.0" />
                            </font>
                         </Text>
-                        <TextField layoutX="391.0" layoutY="261.0" prefHeight="25.0" prefWidth="348.0" />
-                        <TextField layoutX="391.0" layoutY="315.0" prefHeight="25.0" prefWidth="348.0" />
+                        <TextField fx:id="user" layoutX="391.0" layoutY="261.0" prefHeight="25.0" prefWidth="348.0" />
+                        <TextField fx:id="pass" layoutX="391.0" layoutY="315.0" prefHeight="25.0" prefWidth="348.0" />
                         <Text layoutX="391.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="110.13671875">
                            <font>
                               <Font size="20.0" />
@@ -33,7 +33,7 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <Button layoutX="510.0" layoutY="375.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="109.0" text="Login" />
+                        <Button layoutX="510.0" layoutY="375.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="49.0" prefWidth="109.0" text="Login" />
                      </children>
                   </AnchorPane>
             </content>
@@ -47,27 +47,21 @@
                               <Font size="40.0" />
                            </font>
                         </Text>
-                        <TextField layoutX="358.0" layoutY="196.0" prefHeight="25.0" prefWidth="348.0" />
-                        <TextField layoutX="358.0" layoutY="261.0" prefHeight="25.0" prefWidth="348.0" />
-                        <TextField layoutX="358.0" layoutY="322.0" prefHeight="25.0" prefWidth="348.0" />
-                        <TextField layoutX="358.0" layoutY="386.0" prefHeight="25.0" prefWidth="348.0" />
-                        <Text layoutX="358.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="110.13671875">
+                        <TextField fx:id="newUser" layoutX="358.0" layoutY="224.0" prefHeight="25.0" prefWidth="348.0" />
+                        <TextField fx:id="newPass" layoutX="358.0" layoutY="290.0" prefHeight="25.0" prefWidth="348.0" />
+                        <TextField fx:id="rePass" layoutX="358.0" layoutY="345.0" prefHeight="25.0" prefWidth="348.0" />
+                        <Text layoutX="358.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="110.13671875">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <Text layoutX="358.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="110.13671875">
+                        <Button layoutX="451.0" layoutY="385.0" mnemonicParsing="false" onAction="#newLoginUser" prefHeight="49.0" prefWidth="109.0" text="Register" />
+                        <Text layoutX="358.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Retype Password" wrappingWidth="186.13671875">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <Button layoutX="468.0" layoutY="432.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="109.0" text="Register" />
-                        <Text layoutX="358.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Retype Password" wrappingWidth="186.13671875">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="358.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="110.13671875">
+                        <Text layoutX="358.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="110.13671875">
                            <font>
                               <Font size="20.0" />
                            </font>
