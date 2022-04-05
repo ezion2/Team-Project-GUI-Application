@@ -1,3 +1,5 @@
+package application;
+
 public class Item{
     private String name;        //name of item
     private double price;       //price of item
@@ -28,7 +30,7 @@ public class Item{
     public String getType(){
         return type;
     }
-    public String getId(){
+    public int getId(){
         return id;
     }
      public String getDescription(){
