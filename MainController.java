@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TabPane;
@@ -30,12 +32,22 @@ public class MainController implements Initializable {
 	@FXML private ListView<String> listBreakfast;
 	@FXML private ListView<String> listLunch;
 	@FXML private ListView<String> listDinner;
+	@FXML private TextField totalPrice;
 	
     @FXML private TextField searchBar;
     @FXML private ListView<String> listSearchDisplay;
 	
 	@FXML private ListView<String> listShopCart;
 	
+	
+	@FXML
+    private javafx.scene.control.TextField coupon;
+    String[] coupons = new String[10];
+    static String coup="";
+    public static String getCoupon() {
+    	return coup;
+    }
+    
 	@FXML
 	private Button Admin;
     @FXML
@@ -67,6 +79,10 @@ public class MainController implements Initializable {
 			listShopCart.getItems().remove(listShopCart.getSelectionModel().getSelectedIndex());
 		}
 	}
+	@FXML private void handleTotalPrice(ActionEvent event) {
+
+    	totalPrice.setText(theCart.getTotalAmount() + "");
+    }
 	
 	@FXML private void handleCancelCart(ActionEvent event)
 	{
@@ -311,7 +327,48 @@ public class MainController implements Initializable {
 			}
 		}
 	}
-	
+	public void checkCoupon(ActionEvent event) {
+		boolean flag = true;
+		coupons[0]="coupon0";
+		coupons[1]="coupon1";
+		coupons[2]="coupon2";
+		coupons[3]="coupon3";
+		String pons = coupon.getText();
+		if(pons.isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText("Enter a valid coupon code");
+			alert.showAndWait();
+		}else{
+			for(int i=0;i<10;i++) {
+				if(pons.equals(coupons[i])) {
+					MainController.coup=pons;
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setHeaderText(null);
+					alert.setContentText("Valid coupon redeemed for $5.00");
+					alert.showAndWait();
+					flag=true;
+					break;
+					//method for adjusting total-$5
+				}	
+				else {
+					flag=false;
+				}
+				if(i==9) {
+					break;
+				}
+			}
+			if(flag==false) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText(null);
+				alert.setContentText("Invalid coupon code. Try agian.");
+				alert.showAndWait();
+				
+			}
+			
+		
+		}
+	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
