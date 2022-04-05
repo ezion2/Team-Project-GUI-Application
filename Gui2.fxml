@@ -40,7 +40,8 @@
                               </Text>
                            </children>
                         </AnchorPane>
-                        <ListView fx:id="listFull" layoutX="1.0" layoutY="259.0" onMouseClicked="#addToCart" prefHeight="303.0" prefWidth="1138.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="259.0" />
+                        <ListView fx:id="listFull" layoutX="1.0" layoutY="259.0" prefHeight="303.0" prefWidth="1138.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="259.0" />
+                        <Button fx:id="btnAddFull" layoutX="14.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleFullToCart" prefHeight="70.0" prefWidth="138.0" text="Add to Cart" />
                      </children>
                   </AnchorPane>
               </content>
@@ -58,7 +59,8 @@
                               </Text>
                            </children>
                         </AnchorPane>
-                        <ListView fx:id="listBreakfast" layoutX="1.0" layoutY="259.0" onMouseClicked="#addToCart" prefHeight="303.0" prefWidth="1138.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="259.0" />
+                        <ListView fx:id="listBreakfast" layoutX="1.0" layoutY="259.0" prefHeight="303.0" prefWidth="1138.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="259.0" />
+                        <Button fx:id="btnAddBreakFast" layoutX="14.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleBreakFastToCart" prefHeight="70.0" prefWidth="138.0" text="Add to Cart" />
                      </children>
                   </AnchorPane>
                </content>
@@ -76,7 +78,8 @@
                               </Text>
                            </children>
                         </AnchorPane>
-                        <ListView fx:id="listLunch" layoutX="1.0" layoutY="259.0" onMouseClicked="#addToCart" prefHeight="303.0" prefWidth="1138.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="259.0" />
+                        <ListView fx:id="listLunch" layoutX="1.0" layoutY="259.0" prefHeight="303.0" prefWidth="1138.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="259.0" />
+                        <Button fx:id="btnAddLunch" layoutX="14.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleLunchToCart" prefHeight="70.0" prefWidth="138.0" text="Add to Cart" />
                      </children>
                   </AnchorPane>
                </content>
@@ -94,7 +97,8 @@
                               </Text>
                            </children>
                         </AnchorPane>
-                        <ListView fx:id="listDinner" layoutX="1.0" layoutY="259.0" onMouseClicked="#addToCart" prefHeight="303.0" prefWidth="1138.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="259.0" />
+                        <ListView fx:id="listDinner" layoutX="1.0" layoutY="259.0" prefHeight="303.0" prefWidth="1138.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="259.0" />
+                        <Button fx:id="btnAddDinner" layoutX="14.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleDinnerToCart" prefHeight="70.0" prefWidth="138.0" text="Add to Cart" />
                      </children>
                   </AnchorPane>
                </content>
@@ -129,25 +133,31 @@
                               <Font size="22.0" />
                            </font>
                         </Hyperlink>
-                        <TextField editable="false" layoutX="879.0" layoutY="223.0" prefHeight="109.0" prefWidth="245.0" />
+                        <TextField editable="false" layoutX="879.0" layoutY="247.0" prefHeight="109.0" prefWidth="245.0" />
                         <ListView fx:id="listShopCart" layoutY="216.0" prefHeight="338.0" prefWidth="607.0" style="-fx-border-color: #606060; -fx-border-width: 1 0 1 0;" AnchorPane.bottomAnchor="196.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="531.0" AnchorPane.topAnchor="216.0" />
                         <Hyperlink layoutX="14.0" layoutY="554.0" prefHeight="60.0" prefWidth="185.0" style="-fx-background-color: #606060; -fx-text-fill: white;" text="Continue Shopping">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Hyperlink>
-                        <Text layoutX="879.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coupon Availability: " wrappingWidth="244.13671875">
+                        <Text layoutX="879.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coupon Availability: " wrappingWidth="244.13671875">
                            <font>
                               <Font size="21.0" />
                            </font>
                         </Text>
-                        <ListView fx:id="listQueue" layoutX="879.0" layoutY="363.0" prefHeight="107.0" prefWidth="242.0" />
-                        <Text layoutX="879.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Queue: " wrappingWidth="244.13671875">
+                        <ListView fx:id="listQueue" layoutX="879.0" layoutY="387.0" prefHeight="107.0" prefWidth="242.0" />
+                        <Text layoutX="879.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Queue: " wrappingWidth="244.13671875">
                            <font>
                               <Font size="21.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="txtTimeToComplete" editable="false" layoutX="879.0" layoutY="470.0" prefHeight="40.0" prefWidth="242.0" />
+                        <TextField fx:id="txtTimeToComplete" editable="false" layoutX="879.0" layoutY="494.0" prefHeight="40.0" prefWidth="242.0" />
+                        <TextField editable="false" layoutX="607.0" layoutY="247.0" prefHeight="109.0" prefWidth="245.0" />
+                        <Text layoutX="607.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total: " wrappingWidth="244.13671875">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
                </content>
