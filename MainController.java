@@ -13,24 +13,62 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.MouseEvent;
 
 public class MainController implements Initializable {
-
-    ArrayList<String> words = new ArrayList<>(
-            Arrays.asList("test", "dog","Human", "Days of our life", "The best day",
-                    "Friends", "Animal", "Human", "Humans", "Bear", "Life",
-                    "This is some text", "Words", "222", "Bird", "Dog", "A few words",
-                    "Subscribe!", "SoftwareEngineeringStudent", "You got this!!",
-                    "Super Human", "Super", "Like")
-    );
+	
+	// Variables for GUI elements located in the GUI2.fxml file
 	@FXML private ListView listFull;
 	@FXML private ListView listBreakfast;
 	@FXML private ListView listLunch;
 	@FXML private ListView listDinner;
+	
     @FXML private TextField searchBar;
-    @FXML private ListView<String> listView;
-    private int idCounter = 0;
+    @FXML private ListView<String> listSearchDisplay;
+	
+	@FXML private ListView listShopCart;
+	
+	// Global Counter to increment the ID whenever we generate a new Item
+	private int idCounter = 0;
+	
+	// Global Array for handling searching
+    private ArrayList<String> words = new ArrayList<>();
     
+
+	@FXML private void addToCart(MouseEvent event)
+	{
+		System.out.println("Adding to cart");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// Event action to be called
+    @FXML void search(ActionEvent event) 
+    {
+        listSearchDisplay.getItems().clear();
+        listSearchDisplay.getItems().addAll(searchList(searchBar.getText(),words));
+    }
+    
+    // Searching, taking into substring of search text
+    private List<String> searchList(String searchWords, List<String> listOfStrings) 
+    {
+
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+        return listOfStrings.stream().filter(input -> 
+        {
+            return searchWordsArray.stream().allMatch(word ->
+                    input.toLowerCase().contains(word.toLowerCase()));
+        }).collect(Collectors.toList());
+    }
+	
+	// Generating items for the menu
 	private Item generateItem(String name, double price, String type,  String description, Menu menu_obj)
 	{
 		Item newItem = new Item(name, price, type, description, idCounter);
@@ -38,6 +76,7 @@ public class MainController implements Initializable {
 		menu_obj.addItem(newItem);
 		return newItem;
 	}
+	
 	private void populateMenus(Menu menu_obj)
 	{
 		System.out.println("Filling list.");
@@ -60,16 +99,15 @@ public class MainController implements Initializable {
 			}
 		}
 	}
-
-    @FXML
-    void search(ActionEvent event) {
-        listView.getItems().clear();
-        listView.getItems().addAll(searchList(searchBar.getText(),words));
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-    	Menu theMenu = new Menu();
+	
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		System.out.println("Main Controller!");
+		
+		// Creating menu object
+		Menu theMenu = new Menu();
+		
 		// Generating Random items to add to the menu object
 		Item chicken = generateItem("chicken", 15.50, "Breakfast", "A good source of protein", theMenu);
 		Item bread = generateItem("bread", 15.50, "Dinner", "A good source of protein", theMenu);
@@ -78,16 +116,18 @@ public class MainController implements Initializable {
 
 		// Populating GUI Menus with the items
 		populateMenus(theMenu);
-    	listView.getItems().addAll(words);
-    }
+		
+		// Adding the all menu items for searching.
+		
+		
+		for(int i = 0; i < theMenu.getMenuSize(); i++)
+		{
+			// Adding every item to the search bar
+			listSearchDisplay.getItems().add(theMenu.getMenu().get(i).getName());
+			words.add(theMenu.getMenu().get(i).getName());
+			
+		}
+		
+	}
 
-    private List<String> searchList(String searchWords, List<String> listOfStrings) {
-
-        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
-
-        return listOfStrings.stream().filter(input -> {
-            return searchWordsArray.stream().allMatch(word ->
-                    input.toLowerCase().contains(word.toLowerCase()));
-        }).collect(Collectors.toList());
-    }
 }
