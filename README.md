@@ -1,5 +1,2 @@
-# 360team5
-Jeffrey Lafleur <br/>
-Brandon Nosaka <br/>
-Stephen Lubitz <br/>
-Zion Esemonu
+# CSE 360 - Team5
+Programmer(s): Jeffrey Lafleur, Brandon Nosaka, Stephen Lubitz, Zion Esemonu
